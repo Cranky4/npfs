@@ -114,7 +114,7 @@ class ETinyMceYgin extends ETinyMce {
         "-li,".
         "-h1,-h2,-h3,-h4,-h5,-h6,".
         "-div,".
-        "-span,".
+//        "-span,".
         "img[longdesc|usemap|!src|alt=|title|hspace|vspace|width|height|align],".
         "-table[border=0|cellspacing=0|cellpadding=0|frame|rules|align|summary],".
         "-tr[rowspan],".

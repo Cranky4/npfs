@@ -11,6 +11,9 @@ $theme = Yii::app()->getFrontendTheme();
 if ($theme != null && file_exists($theme->basePath.'/css/content.css')) {
   $contentCss = $theme->baseUrl.'/css/content.css';
 }
+if ($theme != null && file_exists($theme->basePath.'/css/content.css')) {
+  $contentCss = $theme->baseUrl.'/css/content.css';
+}
 
 $tiny = $this->widget('ygin.ext.tinymce.ETinyMceYgin', CMap::mergeArray(array(
   'model' => $model,
@@ -27,7 +30,7 @@ $tiny = $this->widget('ygin.ext.tinymce.ETinyMceYgin', CMap::mergeArray(array(
     'skin' => 'bootstrap',
     'ygin_advlink_show_block_menu' => true,
     'ygin_advlink_show_block_files' => true,
-    'setup' => 'js:function(ed) {ed.onPostProcess.add(function(ed, o) {o.content = cleanCode(o.content, true, false, true, true, true, true, true, true, true);});}',
+//    'setup' => 'js:function(ed) {ed.onPostProcess.add(function(ed, o) {o.content = cleanCode(o.content, true, false, true, true, true, true, true, true, true);});}',
   ),
   'contentCss' => $contentCss,
 ), $this->options));
