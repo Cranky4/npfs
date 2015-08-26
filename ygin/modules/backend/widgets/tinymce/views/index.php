@@ -11,8 +11,8 @@ $theme = Yii::app()->getFrontendTheme();
 if ($theme != null && file_exists($theme->basePath.'/css/content.css')) {
   $contentCss = $theme->baseUrl.'/css/content.css';
 }
-if ($theme != null && file_exists($theme->basePath.'/css/content.css')) {
-  $contentCss = $theme->baseUrl.'/css/content.css';
+if ($theme != null && file_exists($theme->basePath.'/css/page.css')) {
+  $contentCss = $theme->baseUrl.'/css/page.css';
 }
 
 $tiny = $this->widget('ygin.ext.tinymce.ETinyMceYgin', CMap::mergeArray(array(

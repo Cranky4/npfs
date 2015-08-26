@@ -29,6 +29,7 @@
         $bootstrapFont . 'glyphicons-halflings-regular.svg' => '../fonts/',
         $bootstrapFont . 'glyphicons-halflings-regular.ttf' => '../fonts/',
         $bootstrapFont . 'glyphicons-halflings-regular.woff' => '../fonts/',
+        $bootstrapFont . 'glyphicons-halflings-regular.woff2' => '../fonts/',
     ));
 
     Yii::app()->clientScript->registerScriptFile('/themes/business/js/js.js', CClientScript::POS_HEAD);
