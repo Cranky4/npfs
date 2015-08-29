@@ -89,6 +89,7 @@ return array(
     ),
     // проектные компоненты
     'components' => array(),
-
-
+    'models' => array(
+        'Feedback' => 'application.modules.npf.models.PFeedBack',
+    ),
 );

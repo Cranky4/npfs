@@ -3,25 +3,46 @@
  * @var $this DefaultController
  * @var Npf[] $npfs
  */
-?>
+Yii::app()->getClientScript()->registerScript("npf-table.sortable", '
+        $(document).ready(function()
+        {
+            $(".npf-sortable").tablesorter();
+            $(".npf-sort").on("click", function() {
+                var column = $(this).data("column");
+                $(".npf-sortable").tablesorter({sortList: [[ column, 1]]});
+            });
+            $(".npf-action-feedback").on("click", function() {
+                var id_npf = $(this).data("id_npf");
+                var name = $(this).data("name");
+                var $modal = $(".npf-modal");
 
+                $modal.find("#PFeedBack_id_npf").val(id_npf);
+                $modal.find(".modal-name").text(name);
+                $modal.modal("show");
+                return false;
+            });
+        }
+
+);
+', CClientScript::POS_END);
+?>
 
 <section>
     <div class="container">
         <div class="btn-group copy" role="group" aria-label="...">
-            <button type="button" class="btn btn-choice"> По надежности</button>
-            <button type="button" class="btn btn-choice"> По накоплениям</button>
-            <button type="button" class="btn btn-choice"> По доходности</button>
+            <button type="button" class="btn btn-choice npf-sort" data-column="1"> По надежности</button>
+            <button type="button" class="btn btn-choice npf-sort" data-column="2"> По накоплениям</button>
+            <button type="button" class="btn btn-choice npf-sort" data-column="3"> По доходности</button>
         </div>
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover npf-sortable">
                 <thead>
                 <tr>
-                    <td> Название</td>
-                    <td> Надежность</td>
-                    <td> Накопления</td>
-                    <td> Доходность</td>
-                    <td></td>
+                    <th> Название</th>
+                    <th> Надежность</th>
+                    <th> Накопления</th>
+                    <th> Доходность</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,24 +52,31 @@
                             <div class="brand">
                                 <div class="logo">
                                     <?php if ($src = $npf->getLogoPath()): ?>
-                                        <?= CHtml::link(CHtml::image('/' . $src, $npf->title), Yii::app()->createUrl('npf/default/view',[
-                                            'id' => $npf->primaryKey
-                                        ])) ?>
+                                        <?= CHtml::link(CHtml::image('/' . $src, $npf->title),
+                                            Yii::app()->createUrl('npf/default/view', [
+                                                'id' => $npf->primaryKey
+                                            ])) ?>
                                     <?php endif; ?>
                                 </div>
-                                <?= CHtml::link($npf->title, Yii::app()->createUrl('npf/default/view',[
+                                <?= CHtml::link($npf->title, Yii::app()->createUrl('npf/default/view', [
                                     'id' => $npf->primaryKey
                                 ])) ?>
                             </div>
                         </td>
                         <td>
+                            <div class="invisible"><?= $npf->reliability ?></div>
                             <?php $this->widget('application.modules.npf.widgets.ReliabilityStarsWidget', [
                                 'stars' => $npf->reliability,
                             ]); ?>
                         </td>
                         <td> <?= $npf->getAccumulation() ?></td>
                         <td> <?= $npf->profitability ?>%</td>
-                        <td><a href="#" class="btn btn-blue"> Стать клиентом </a></td>
+                        <td>
+                            <button class="btn btn-blue npf-action-feedback" data-id_npf="<?= $npf->primaryKey ?>"
+                                    data-name="<?= $npf->title ?>">
+                                Стать клиентом
+                            </button>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>

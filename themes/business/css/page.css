@@ -190,7 +190,7 @@ hr {
 }
 
 #anketa {
-    margin-top: -50px;
+    /*margin-top: -50px;*/
     padding-bottom: 20px;
 }
 
@@ -1534,4 +1534,12 @@ and (max-device-width: 480px)
 and (-webkit-min-device-pixel-ratio: 2)
 and (orientation: landscape) {
 
+}
+
+.invisible {
+    display: block;
+    overflow: hidden;
+    width: 0px;
+    height: 0px;
+    color: transparent;
 }

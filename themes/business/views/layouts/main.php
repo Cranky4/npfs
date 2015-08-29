@@ -119,7 +119,7 @@
 <?php $this->widget('BlockWidget', array("place" => SiteModule::PLACE_CONTENT_TOP)); ?>
 <?php if ($content): ?>
     <section>
-<!--        <h2>--><?//= $this->caption ?><!--</h2>-->
+        <!--        <h2>--><? //= $this->caption ?><!--</h2>-->
 
         <div class="container">
             <?= $content; ?>
@@ -139,7 +139,14 @@
             </div>
         </div>
     </div>
+    <!-- Prefix -->
+    <script src="/themes/business/js/prefixfree.min.js"></script>
+    <script src="/themes/business/js/jquery.table-sort.js"></script>
 </footer>
+
+<?php
+ $this->widget("application.modules.npf.widgets.FeedbackModalWidget");
+?>
 
 </body>
 </html>
