@@ -484,6 +484,17 @@
                         )) ?>
                         <?= $form->error($model, 'email') ?>
                     </div>
+
+                    <?= $form->labelEx($model, 'id_npf', array(
+                      'class' => 'form-title',
+                    )) ?>
+                    <div class="input-field">
+                        <?= $form->dropDownList($model, 'id_npf', Npf::getList(), array(
+                          'prompt' => 'Выберите из списка',
+                          'class'  => 'form-control',
+                        )) ?>
+                        <?= $form->error($model, 'id_npf') ?>
+                    </div>
                 </div>
             </div>
         </div>

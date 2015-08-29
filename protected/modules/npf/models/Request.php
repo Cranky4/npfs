@@ -85,7 +85,7 @@
                 'required',
               ),
               array(
-                'iChangeMyData, sex, matches_with_register_address, personal_data_agreement, passport_serial, passport_number',
+                'iChangeMyData, sex, matches_with_register_address, personal_data_agreement, passport_serial, passport_number, id_npf',
                 'numerical',
                 'integerOnly' => true,
               ),
@@ -231,6 +231,7 @@
               'phone'                         => 'Мобильный телефон',
               'email'                         => 'E-mail',
               'personal_data_agreement'       => 'Согласен(а) на обработку персональных данных ',
+              'id_npf'                        => "НПФ",
             );
         }
 

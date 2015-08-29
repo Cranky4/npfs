@@ -24,8 +24,8 @@ class PFeedBack extends Feedback
     public function rules()
     {
         return array(
-            array('fio', 'required'),
-            array('mail', 'email', 'message' => 'Введен некорректный e-mail адрес'),
+            array('fio, phone', 'required'),
+//            array('mail', 'email', 'message' => 'Введен некорректный e-mail адрес'),
 //            array('verifyCode', 'DaCaptchaValidator', 'caseSensitive' => true),
             array('fio, phone, mail', 'length', 'max' => 255),
             array(
