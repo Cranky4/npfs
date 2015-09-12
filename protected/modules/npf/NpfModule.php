@@ -2,6 +2,8 @@
 
     class NpfModule extends DaWebModuleAbstract
     {
+        public $ratingPageMenuId = 116;
+        public $calculatorPageMenuId = 117;
 
         protected $_urlRules = array(
           'npf/<id:\d+>' => 'npf/default/view',

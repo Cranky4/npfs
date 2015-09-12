@@ -65,7 +65,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="active navbar-brand" href="#">
+            <a class="active navbar-brand" href="/">
                 <div class="brand-logo"></div>
             </a>
         </div>

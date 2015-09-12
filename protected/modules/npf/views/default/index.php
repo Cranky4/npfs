@@ -1,31 +1,39 @@
 <?php
-/**
- * @var $this DefaultController
- * @var Npf[] $npfs
- */
-Yii::app()->getClientScript()->registerScript("npf-table.sortable", '
-        $(document).ready(function()
-        {
-            $(".npf-sortable").tablesorter();
-            $(".npf-sort").on("click", function() {
-                var column = $(this).data("column");
-                $(".npf-sortable").tablesorter({sortList: [[ column, 1]]});
-            });
-            $(".npf-action-feedback").on("click", function() {
-                var id_npf = $(this).data("id_npf");
-                var name = $(this).data("name");
-                var $modal = $(".npf-modal");
+    /**
+     * @var $this DefaultController
+     * @var Npf[] $npfs
+     * @var Menu $menu
+     */
+    Yii::app()->getClientScript()->registerScript("npf-table.sortable", '
+    $(document).ready(function()
+    {
+        $(".npf-sortable").tablesorter();
+        $(".npf-sort").on("click", function() {
+            var column = $(this).data("column");
+            $(".npf-sortable").tablesorter({sortList: [[ column, 1]]});
+        });
+        $(".npf-action-feedback").on("click", function() {
+            var id_npf = $(this).data("id_npf");
+            var name = $(this).data("name");
+            var $modal = $(".npf-modal");
 
-                $modal.find("#PFeedBack_id_npf").val(id_npf);
-                $modal.find(".modal-name").text(name);
-                $modal.modal("show");
-                return false;
-            });
-        }
-
+            $modal.find("#PFeedBack_id_npf").val(id_npf);
+            $modal.find(".modal-name").text(name);
+            $modal.modal("show");
+            return false;
+        });
+    }
 );
 ', CClientScript::POS_END);
 ?>
+
+<?php if ($menu && $menu->content): ?>
+    <section>
+        <div class="container">
+            <?= $menu->content ?>
+        </div>
+    </section>
+<?php endif; ?>
 
 <section>
     <div class="container">
@@ -52,21 +60,21 @@ Yii::app()->getClientScript()->registerScript("npf-table.sortable", '
                             <div class="brand">
                                 <div class="logo">
                                     <?php if ($src = $npf->getLogoPath()): ?>
-                                        <?= CHtml::link(CHtml::image('/' . $src, $npf->title),
-                                            Yii::app()->createUrl('npf/default/view', [
-                                                'id' => $npf->primaryKey
-                                            ])) ?>
+                                        <?= CHtml::link(CHtml::image('/'.$src, $npf->title),
+                                          Yii::app()->createUrl('npf/default/view', [
+                                            'id' => $npf->primaryKey,
+                                          ])) ?>
                                     <?php endif; ?>
                                 </div>
                                 <?= CHtml::link($npf->title, Yii::app()->createUrl('npf/default/view', [
-                                    'id' => $npf->primaryKey
+                                  'id' => $npf->primaryKey,
                                 ])) ?>
                             </div>
                         </td>
                         <td>
                             <div class="invisible"><?= $npf->reliability ?></div>
                             <?php $this->widget('application.modules.npf.widgets.ReliabilityStarsWidget', [
-                                'stars' => $npf->reliability,
+                              'stars' => $npf->reliability,
                             ]); ?>
                         </td>
                         <td> <?= $npf->getAccumulation() ?></td>

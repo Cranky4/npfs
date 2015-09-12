@@ -25,8 +25,11 @@
 
             $npfs = Npf::model()->findAll();
 
+            $menu = Menu::model()->findByPk(Yii::app()->getModule('npf')->ratingPageMenuId);
+
             $this->render('index', [
               'npfs' => $npfs,
+              'menu' => $menu,
             ]);
         }
 
@@ -45,7 +48,10 @@
 
         public function actionCalculator()
         {
-            $this->render('calculator');
+            $menu = Menu::model()->findByPk(Yii::app()->getModule('npf')->calculatorPageMenuId);
+            $this->render('calculator',[
+                'menu' => $menu,
+            ]);
         }
 
         public function actionBlank()

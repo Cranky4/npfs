@@ -1,58 +1,26 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cranky4
- * Date: 28.08.2015
- * Time: 21:55
- */
+    /**
+     * Created by PhpStorm.
+     * User: Cranky4
+     * Date: 28.08.2015
+     * Time: 21:55
+     *
+     * @var Menu $menu
+     */
 
-Yii::app()->clientScript->registerScript("caclulator-npf-behaviors", '
-
-$(function(){
-
-    var sex = $("#calcSex").val();
-    var age = $("#calcAge").val();
-    var income = $("#calcIncome").val();
-
-    var womanPensionAge = 55;
-    var manPensionAge = 50;
-    var womanSexId = 2;
-    var manSexId = 1;
-
-//  лет до пенсии
-    if(sex == manSexId) {
-        yearBeforePension = manPensionAge - age;
-    } else {
-        yearBeforePension = womanPensionAge - age;
-    }
-
-
-    //alert(FV(0.4, 32, 17200, 0, 1));
-    alert(FV1(17200, 32, 4));
-
-function FV1(PV, n, r) {
-    return PV*Math.pow(1+r/100, n);
-}
-
-    function FV (rate, nper, pmt, pv, type) {
-        if (!type) type = 0;
-
-        var pow = Math.pow(1 + rate, nper);
-        var fv = 0;
-
-        if (rate) {
-            fv = (pmt * (1 + rate * type) * (1 - pow) / rate) - pv * pow;
-        } else {
-            fv = -1 * (pv + pmt * nper);
-        }
-
-        return fv;
-    }
-});
-
-');
+    Yii::app()->clientScript->registerScriptFile(Yii::app()->assetManager->publish(Yii::getPathOfAlias('application.modules.npf.assets').'/calculator.js'),
+      CClientScript::POS_END);
 
 ?>
+
+
+<?php if ($menu && $menu->content): ?>
+    <section>
+        <div class="container">
+            <?= $menu->content ?>
+        </div>
+    </section>
+<?php endif; ?>
 
 <section class="color-background-1">
     <div class="container">
@@ -77,34 +45,32 @@ function FV1(PV, n, r) {
 
                             <div class="col-sm-4">
                                 <div class="input-group">
-                                    <input type="email" class="form-control  calc-input-age" id="calcAge"
-                                           placeholder="Возраст">
+                                    <input type="number" value="30" class="form-control  calc-input-age" id="calcAge"
+                                           placeholder="Возраст" min="18" max="100">
                                     <span class="input-group-addon"> <i class="fa fa-calendar-o"></i> </span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="calcIncome" class="col-sm-8 control-label"> Ваша заработная
-                                плата </label>
+                            <label for="calcIncome" class="col-sm-8 control-label"> Ваша заработная плата </label>
 
                             <div class="col-sm-4">
                                 <div class="input-group">
-                                    <input type="text" class="form-control calc-input-income" id="calcIncome"
-                                           placeholder="Зарплата">
+                                    <input type="number" value="10000" class="form-control calc-input-income" id="calcIncome"
+                                           placeholder="Зарплата" step="1000">
                                     <span class="input-group-addon"> <i class="fa fa-rub"></i> </span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="calcSumP" class="col-sm-8 control-label"> Сумма пенсионных
-                                накоплений </label>
+                            <label for="calcSumP" class="col-sm-8 control-label"> Сумма пенсионных накоплений </label>
 
                             <div class="col-sm-4">
                                 <div class="input-group">
-                                    <input type="text" class="form-control calc-input-sumP" id="calcSumP"
-                                           placeholder="Накопления">
+                                    <input type="number" value="0" class="form-control calc-input-sumP" id="calcSumP"
+                                           placeholder="Накопления" step="1000">
                                     <span class="input-group-addon"> <i class="fa fa-rub"></i> </span>
                                 </div>
                             </div>
@@ -115,7 +81,7 @@ function FV1(PV, n, r) {
 
                             <div class="col-sm-4">
                                 <div class="input-group">
-                                    <input id="calcProfitability" type="text"
+                                    <input id="calcProfitability" type="number" value="8"
                                            class="form-control calc-input-profitability" placeholder="00">
                                     <span class="input-group-addon"> % </span>
                                 </div>
@@ -137,7 +103,7 @@ function FV1(PV, n, r) {
                                     Доходность:
                                 </td>
                                 <td class="title-big">
-                                    10 %
+                                    <span id="rateHolder">10</span> %
                                 </td>
                                 <td class="title-small">
                                     5 %
@@ -148,10 +114,10 @@ function FV1(PV, n, r) {
                                     Размер пенсии:
                                 </td>
                                 <td class="title-big">
-                                    27,300 ₽
+                                    <span id="pensionPaymentHolderNPF">27,300</span> ₽
                                 </td>
                                 <td class="title-small">
-                                    12,300 ₽
+                                    <span id="pensionPaymentHolderPFR">12,300</span> ₽
                                 </td>
                             </tr>
                             <tr>
@@ -159,10 +125,10 @@ function FV1(PV, n, r) {
                                     Накопления:
                                 </td>
                                 <td class="title-big">
-                                    4,556,141 ₽
+                                    <span id="pensionSumHolderNPF">4,556,141</span> ₽
                                 </td>
                                 <td class="title-small">
-                                    1,251,768 ₽
+                                    <span id="pensionSumHolderPFR">1,251,768</span> ₽
                                 </td>
                             </tr>
                             </tbody>
@@ -183,7 +149,7 @@ function FV1(PV, n, r) {
         <div class="row">
             <div class="col-md-12">
                 <div
-                    style="padding: 10px; border-bottom: 1px dotted #6699cc; border-top: 1px dotted #6699cc; margin-bottom: 20px;">
+                  style="padding: 10px; border-bottom: 1px dotted #6699cc; border-top: 1px dotted #6699cc; margin-bottom: 20px;">
                     <p class="p-small">
                         Доход от размещения пенсионных резервов и инвестирования пенсионных накоплений может как
                         уменьшаться, так и увеличиваться в зависимости от рыночных условий и состояния фондовых рынков.
