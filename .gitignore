@@ -23,3 +23,5 @@ temp/*
 .buildpath
 .project
 .idea/*
+
+robots.txt
