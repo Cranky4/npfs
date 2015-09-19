@@ -40,14 +40,22 @@ $(function () {
             yearBeforePension = 1;
         }
 
-        var allPaysNPF = allPaysPFR = 0;
-        for (i = 0; i < yearBeforePension; i++) {
+        var allPaysNPF = allPaysPFR  = 0;
+
+        if (sumP) {
+            sumPNPF += parseFloat(sumP);
+            sumPPFR += parseFloat(sumP);
+        }
+
+        for (i = 0; i <= yearBeforePension; i++) {
+
+            if (sumP) {
+                allPaysNPF += parseFloat(sumP) * rate;
+                allPaysPFR += parseFloat(sumP) * rate;
+            }
+
             allPaysNPF += income * Math.pow((1 + rate), yearBeforePension - i);
             allPaysPFR += income * Math.pow((1 + PfrRate), yearBeforePension - i);
-        }
-        if (sumP) {
-            allPaysNPF += parseFloat(sumP);
-            allPaysPFR += parseFloat(sumP);
         }
         //console.log('allPays = ' + allPaysNPF);
 

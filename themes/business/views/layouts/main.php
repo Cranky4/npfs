@@ -120,10 +120,7 @@
 <?php if ($content): ?>
     <section>
         <!--        <h2>--><? //= $this->caption ?><!--</h2>-->
-
-        <div class="container">
-            <?= $content; ?>
-        </div>
+                    <?= $content; ?>
     </section>
 <?php endif; ?>
 <?php $this->widget('BlockWidget', array("place" => SiteModule::PLACE_BOTTOM)); ?>

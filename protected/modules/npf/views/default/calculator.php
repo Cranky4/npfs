@@ -8,17 +8,17 @@
      * @var Menu $menu
      */
 
-    Yii::app()->clientScript->registerScriptFile(Yii::app()->assetManager->publish(Yii::getPathOfAlias('application.modules.npf.assets').'/calculator.js'),
-      CClientScript::POS_END);
+    Yii::app()->clientScript->registerScriptFile(
+      Yii::app()->assetManager->publish(Yii::getPathOfAlias('application.modules.npf.assets').'/calculator.js'),
+      CClientScript::POS_END
+    );
 
 ?>
 
 
 <?php if ($menu && $menu->content): ?>
     <section>
-        <div class="container">
-            <?= $menu->content ?>
-        </div>
+        <?= $menu->content ?>
     </section>
 <?php endif; ?>
 
