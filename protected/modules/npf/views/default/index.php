@@ -29,9 +29,7 @@
 
 <?php if ($menu && $menu->content): ?>
     <section>
-        <div class="container">
             <?= $menu->content ?>
-        </div>
     </section>
 <?php endif; ?>
 

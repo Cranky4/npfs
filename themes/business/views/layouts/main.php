@@ -39,20 +39,22 @@
 
     //    Yii::app()->clientScript->registerCssFile('/themes/business/css/content.css');
     Yii::app()->clientScript->registerCssFile('/themes/business/css/page.css');
-    Yii::app()->clientScript->registerCssFile(
-        Yii::app()->assetManager->publish(Yii::getPathOfAlias('application.assets.font-awesome') . '/css/font-awesome.css',
-            true, -1, YII_DEBUG)
-    );
-    $faFont = Yii::getPathOfAlias('application.assets.font-awesome.fonts') . DIRECTORY_SEPARATOR;
-    Yii::app()->clientScript->addDependResource('font-awesome.css', array(
-        $faFont . 'FontAwesome.otf' => '../fonts/',
-        $faFont . 'fontawesome-webfont.eot' => '../fonts/',
-        $faFont . 'fontawesome-webfont.svg' => '../fonts/',
-        $faFont . 'fontawesome-webfont.ttf' => '../fonts/',
-        $faFont . 'fontawesome-webfont.woff2' => '../fonts/',
-        $faFont . 'fontawesome-webfont.woff' => '../fonts/',
-    ));
+    Yii::app()->clientScript->registerCssFile("/themes/business/font-awesome/css/font-awesome.css");
+    //Yii::app()->clientScript->registerCssFile(
+        //Yii::app()->assetManager->publish(Yii::getPathOfAlias('application.assets.font-awesome') . '/css/font-awesome.css')
+    //);
+    //$faFont = Yii::getPathOfAlias('application.assets.font-awesome.fonts') . DIRECTORY_SEPARATOR;
+    //Yii::app()->clientScript->addDependResource('font-awesome.css', array(
+        //$faFont . 'FontAwesome.otf' => '../fonts/',
+        //$faFont . 'fontawesome-webfont.eot' => '../fonts/',
+        //$faFont . 'fontawesome-webfont.svg' => '../fonts/',
+        //$faFont . 'fontawesome-webfont.ttf' => '../fonts/',
+        //$faFont . 'fontawesome-webfont.woff2' => '../fonts/',
+        //$faFont . 'fontawesome-webfont.woff' => '../fonts/',
+    //));
     ?>
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:400,700&subset=latin,cyrillic" rel="stylesheet" type="text/css">
     <title><?php echo CHtml::encode($this->getPageTitle()); ?></title>
 </head>
 <body>
@@ -119,11 +121,7 @@
 <?php $this->widget('BlockWidget', array("place" => SiteModule::PLACE_CONTENT_TOP)); ?>
 <?php if ($content): ?>
     <section>
-        <!--        <h2>--><? //= $this->caption ?><!--</h2>-->
-
-        <div class="container">
             <?= $content; ?>
-        </div>
     </section>
 <?php endif; ?>
 <?php $this->widget('BlockWidget', array("place" => SiteModule::PLACE_BOTTOM)); ?>

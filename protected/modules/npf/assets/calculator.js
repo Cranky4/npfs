@@ -14,6 +14,8 @@ $(function () {
         var rate = $("#calcProfitability").val();
         var sumP = $("#calcSumP").val();
 
+       income = income * 0.06 * 12;
+
         var $sumHolderNPF = $("#pensionSumHolderNPF");
         var $sumHolderPFR = $("#pensionSumHolderPFR")
         var $paymentHolderPFR = $("#pensionPaymentHolderPFR");
@@ -40,16 +42,26 @@ $(function () {
             yearBeforePension = 1;
         }
 
+       var allSumPNPF = allSumPPFR = 0;
+        if (sumP) {
+            allSumPNPF = allSumPPFR = parseFloat(sumP);
+            for (i = 0; i < yearBeforePension; i++) {
+                allSumPNPF += allSumPNPF*rate;
+                allSumPPFR += allSumPPFR*PfrRate;
+            }
+        }
+        //console.log('allSumPNPF = ' + allSumPNPF);
+        //console.log('allSumPPFR = ' + allSumPPFR );
+
         var allPaysNPF = allPaysPFR = 0;
         for (i = 0; i < yearBeforePension; i++) {
             allPaysNPF += income * Math.pow((1 + rate), yearBeforePension - i);
             allPaysPFR += income * Math.pow((1 + PfrRate), yearBeforePension - i);
         }
-        if (sumP) {
-            allPaysNPF += parseFloat(sumP);
-            allPaysPFR += parseFloat(sumP);
-        }
         //console.log('allPays = ' + allPaysNPF);
+
+        allPaysNPF += allSumPNPF;
+        allPaysPFR += allSumPPFR ;
 
         allPaysNPF = parseFloat(allPaysNPF).toFixed(0);
         allPaysPFR = parseFloat(allPaysPFR).toFixed(0);
@@ -98,5 +110,9 @@ $(function () {
 
         return km + kw + kd;
     }
+
+
+
+$('*').tooltip();
 
 });

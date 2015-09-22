@@ -16,9 +16,7 @@
 
 <?php if ($menu && $menu->content): ?>
     <section>
-        <div class="container">
             <?= $menu->content ?>
-        </div>
     </section>
 <?php endif; ?>
 
@@ -44,7 +42,7 @@
                             <label for="calcAge" class="col-sm-8 control-label"> Ваш возраст </label>
 
                             <div class="col-sm-4">
-                                <div class="input-group">
+                                <div class="input-group" style="width: 100%;">
                                     <input type="number" value="30" class="form-control  calc-input-age" id="calcAge"
                                            placeholder="Возраст" min="18" max="100">
                                     <span class="input-group-addon"> <i class="fa fa-calendar-o"></i> </span>
@@ -65,7 +63,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="calcSumP" class="col-sm-8 control-label"> Сумма пенсионных накоплений </label>
+                            <label for="calcSumP" class="col-sm-8 control-label"> Сумма пенсионных накоплений  <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Сумма пенсионных накоплений, начисленных на текущий период. Если вы не знаете эту сумму, то оставьте поле пустым"></i> </label>
 
                             <div class="col-sm-4">
                                 <div class="input-group">
