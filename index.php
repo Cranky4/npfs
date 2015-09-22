@@ -1,5 +1,6 @@
 <?php
 
+
 // Переопределяющий конфиг файл на локальном хосте
 $localConfig = dirname(__FILE__).'/protected/config/local.php';
 
