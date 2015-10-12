@@ -10,7 +10,12 @@
         $(".npf-sortable").tablesorter();
         $(".npf-sort").on("click", function() {
             var column = $(this).data("column");
-            $(".npf-sortable").tablesorter({sortList: [[ column, 1]]});
+            $(".npf-sortable").tablesorter({
+                sortList: [[ column, 1]],
+                headers: {
+                     2: { sorter: "digit" } // column number, type
+                }
+            });
         });
         $(".npf-action-feedback").on("click", function() {
             var id_npf = $(this).data("id_npf");
@@ -75,7 +80,7 @@
                               'stars' => $npf->reliability,
                             ]); ?>
                         </td>
-                        <td> <?= $npf->getAccumulation() ?></td>
+                        <td> <div class="invisible"><?= $npf->accumulation ?></div><?= $npf->getAccumulation() ?></td>
                         <td> <?= $npf->profitability ?>%</td>
                         <td>
                             <button class="btn btn-blue npf-action-feedback" data-id_npf="<?= $npf->primaryKey ?>"

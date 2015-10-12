@@ -5,6 +5,9 @@
  * Date: 26.08.2015
  * Time: 7:05
  */
+if($stars>5) {
+    $stars = 5;
+}
 ?>
 
 <?php for ($i = 0; $i < $stars; $i++): ?>

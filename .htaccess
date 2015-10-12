@@ -9,6 +9,8 @@ RewriteBase /
 #RewriteCond %{HTTP_HOST} !\..+\.
 #RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
 #RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [QSA,L,R=301]
+RewriteCond %{HTTP_HOST} !(www\.)?pensiyaonline\.ru [NC]
+RewriteRule ^(.*)$ http://pensiyaonline.ru/$1 [R=301,L]
 
 # deleting index.php
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
