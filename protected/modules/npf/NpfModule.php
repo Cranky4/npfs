@@ -4,6 +4,7 @@
     {
         public $ratingPageMenuId = 116;
         public $calculatorPageMenuId = 117;
+        public $newsPageMenuId = 121;
 
         protected $_urlRules = array(
           'npf/<id:\d+>' => 'npf/default/view',

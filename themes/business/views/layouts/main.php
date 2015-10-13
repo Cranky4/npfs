@@ -112,7 +112,7 @@
 
 <?php $this->widget('BlockWidget', array("place" => SiteModule::PLACE_TOP)); ?>
 
-<?php if ($imageFile = Yii::app()->menu->getCurrent()->imageFile): ?>
+<?php if (($imageFile = Yii::app()->menu->getCurrent()->imageFile) && $this->id != "news"): ?>
     <section class="color-primary-0">
         <img src="/<?= $imageFile->getFilePath() ?>" alt="" class="img-responsive" style="width: 100%; height: auto;">
     </section>

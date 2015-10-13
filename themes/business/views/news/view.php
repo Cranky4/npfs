@@ -5,14 +5,18 @@
      */
     $this->registerCssFile('news.css');
 
+    $bg = "";
+    if ($photo = $model->image) {
+        $bg = "background-image: url(/".$photo->getFilePath().");background-size: cover;";
+    }
 ?>
 
-<section class="color-primary-0" style="min-height: 350px;">
+<section class="color-primary-0" style="min-height: 350px; <?= $bg ?>">
     <div class="container">
         <div class="col-md-12">
             <div style="padding-top: 10%; padding-bottom: 10%;">
                 <h1 class="text-white text-center" style="margin: 0px;">
-                    Агентство по страхованию пенсионных взносов работает по аналогии с банковской системой России
+                    <?= $model->title ?>
                 </h1>
             </div>
         </div>
@@ -39,8 +43,16 @@
                             <div class="box-head">
                                 <div> Рассказать друзьям</div>
                             </div>
-                            <?php $this->widget('ygin.widgets.likeAndShare.LikeAndShareWidget', array("title" => $model->title)); ?>
+                            <?php $this->widget(
+                                'ygin.widgets.likeAndShare.LikeAndShareWidget',
+                                array("title" => $model->title)
+                            ); ?>
                         </div>
+
+                        <div class="back" style="margin-top: 20px;">
+                            <a href="<?= Yii::app()->createUrl('news/news/index') ?>" class="btn btn-primary">Назад</a>
+                        </div>
+
                     </div>
                 </div>
             </div>
